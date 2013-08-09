@@ -1,0 +1,32 @@
+Here's an outline for the talk, and some useful links:
+
+* What a decorator is
+* How to use a decorator someone else wrote
+* How to decorate a function with known arguments
+* How to decorate a function with unknown arguments
+* How to write a decorator factory
+* Example usage
+* functools.wraps and the decorator module
+* Should you use a decorator?
+* Decoratoring other people's code
+* Useful decorators
+[[http://www.ibm.com/developerworks/library/l-cpdecor/index.html#N1017A]["Element-wise" functions]]
+[[http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484][Counting function calls, benchmarking]] (at the bottom)
+[[http://code.activestate.com/recipes/577666-abstract-method-decorator/][Abstract method decorator]]
+[[http://code.activestate.com/recipes/576944-the-goto-decorator/][Goto decorator]]
+[[http://code.activestate.com/recipes/578528-type-checking-using-python-3x-annotations/][Python 3 type checking with annotations]]
+[[http://code.activestate.com/recipes/578233-immutable-class-decorator/][Immutable classes]] (can't be inherited from though)
+[[http://code.activestate.com/recipes/577819-deprecated-decorator/][Deprecation that auto-calls the new function]]
+[[http://wiki.python.org/moin/PythonDecoratorLibrary#Smart_deprecation_warnings_.28with_valid_filenames.2C_line_numbers.2C_etc..29][Deprecation which specifies the file and line of deprecated function]]
+[[http://wiki.python.org/moin/PythonDecoratorLibrary#Easy_Dump_of_Function_Arguments][Print the arguments of a function before calling it]]
+[[http://wiki.python.org/moin/PythonDecoratorLibrary#Synchronization][Synchronization for multi-threaded programs]]
+[[http://code.activestate.com/recipes/496691-new-tail-recursion-decorator/#c3][Turning recursive functions into loops]] (only helpful when calling beyond the stack frame limit)
+[[http://www.phyast.pitt.edu/~micheles/python/documentation.html#redirecting-stdout][Redirecting a function's stdout]]
+[[http://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions][Pre and post conditions]]
+[[https://mg.pov.lt/profilehooks/][Profiling and coverage analysis]]
+[[http://www.linux-mag.com/id/5377/][Timeout for long functions]] (POSIX systems only, sorry Windows users :( )
+[[http://micheles.googlecode.com/hg/decorator/documentation.html#the-solution][Memoize]] (or for Python 3.2+, [[http://docs.python.org/3.4/library/functools.html#functools.lru_cache][functools.lru_cach]])
+* Tools for writing decorators
+[[micheles.googlecode.com/hg/decorator/documentation.html][Decorator module]], as previously mentioned
+The built-in [[http://docs.python.org/2/library/functools.html#functools.wraps][functools.wraps]]
+[[http://docs.pylonsproject.org/projects/venusian/en/latest/#using-venusian][Venusian offers delayed decorator application]], with the main goal of improving testability
