@@ -1,0 +1,51 @@
+say your co-worker wrote you a caching decorator...
+
+* Preface
+Who here thinks they know what a decorator is?
+Who has used a decorator before? If you use Flask or Django, you probably have
+Who has written a decorator before?
+Who has written a /good/ decorator before? One that *didn't* break the signature of the decorated function? 
+
+My goal is that when I'm done, you'll be able to do each of those things. Or at least the ones you care about.
+
+Please do interrupt me if you have any corrections!
+
+Also, let me just say this: Of all the things I read about decorators while researching this presentation, the best was Matt Harrison's ebook, [[http://www.amazon.com/Guide-Learning-Python-Decorators-ebook/dp/B006ZHJSIM/][Guide to Learning Python Decorators]]. It's five bucks, and he explains all the technical details that make decorators possible. This involves big words like "higher-order functinos" and "closures". But it's worth your while - I can personally say that closures turned a bit of ugly code I wrote into genuinely beautiful code.
+
+* What a decorator is
+My main points here aren't the technical details, because that would mean spending time on closures and other scary things like that
+Instead, I'll focus on how to use a decorator someone else has written, and show you what decorators can do so you'll know when to use them in your own code
+
+* Using a decorator
+You're done, pat yourself on the back
+If you're a fan of OOP, you've probably used/will use some of these decorators
+
+* How to write a decorator with no arguments
+So, now I'm going to go into how to write a decorator. There's basically four levels of complexity here, and while the earlier examples are lame, I think it's useful to slowly increase the complexity.
+
+Also, in these code examples, any output from the code has a colon before it. You'll see in a sec.
+
+So, this is how you decorate a function that doesn't require any arguments. But this will break if you try to use it on a function that has arguments, so it's pretty useless.
+
+* How to decorate a function with unknown arguments
+Now, the point of decorators is to have really general code. Which means your decorator should work with any function, no matter what arguments it takes.
+
+If you've been using Python for a while, you've probably seen something like this before. *args is tuple unpacking, which allows you to support positional arguments. **kwargs is dict unpacking, which allows you to support keyword arguments. If you don't know how this works, don't worry about it too much - basically, whatever arguments you pass in are going to be copied and then used to call the original function.
+
+* How to write a decorator factory
+The most complicated case for a decorator is when your decorator takes arguments. It might have different behaviour, it might use the extra information in some way (like Flask's @route decorator), or whatever. A popular term for this is a /decorator factory/.
+
+So, consider what this code means:
+
+Here, you're calling the left-most function with the result of the right-most function
+
+With a decorator that takes arguments, it's basically the same - you call the decorator factory with the arguments, it returns a decorator, and then you apply that decorator to the function you want to decorate
+
+(I'm sorry if this is confusing, but I only have so much time)
+
+Also, I originally had a really complicated and really cool example for this that involved signals and timing out if a function takes too long, but it didn't run on my Windows machine :( Very sad.
+
+* Afterword
+Also, while you /can/ make decorators with classes using a combination of __init__, and  __call__, I personally dislike them :) They don't require as much deep nesting, so it can be easier to think about them. They also have a nice benefit that if you modify any attributes of the class, it will modify any functions you decorated for future calls. I just feel like there's no need for a class to exist if it doesn't create any worthwhile objects. Plus, functions can have attributes, so /nyeh/.
+
+
