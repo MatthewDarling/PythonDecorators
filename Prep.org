@@ -1,0 +1,60 @@
+* Content notes
+** [[http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484][The infamous StackOverflow answer]]
+Since when you are calling the function returned by the decorator, you are calling the wrapper, passing arguments to the wrapper will let it pass them to the decorated function
+Interesting examples: counting the number of times you call a function (I've used this), benchmarking
+** [[http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/][SatlyCrane on args and kwargs]]
+\*args is tuple unpacking, **kwargs is dict unpacking
+** [[http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud-python-decorators_8528.html][Flask and how decorator factories work]]
+"wrap this function with the output of the decorator factory"
+I know Flask uses them for routes, and Django for a variety of things - I haven't worked with either though
+** [[http://plope.com/Members/chrism/now_not_to_write_python][Chris McDonough, author of Pyramid, says too many decorators are bad]]
+#+BEGIN_QUOTE
+[Don't] use "@" decorator syntax gratiutiously. I'm glad you know how to use it, and I'm suitably impressed. But pretty soon you're going to realize how ridiculous what you're doing is.
+#+END_QUOTE
+** [[http://www.plope.com/Members/chrism/not_todo_inverse][What you should do instead]]
+#+BEGIN_QUOTE
+Don't use decorators to do things you could do in a simpler way.
+#+END_QUOTE
+** [[http://blog.extracheese.org/2007/09/globals-and-cargo-culting.html][In ancient times (2007), Gary Bernhardt wrote:]]
+#+BEGIN_QUOTE
+If you choose [a singleton] or [a decorator that may involve a singleton], the joke's on you. You're still using a global, but now you have two problems: global state and a complicated method for managing it. There's no need for that, because we already have a simple method for injecting instances into a module's functions: globals!
+#+END_QUOTE
+** [[http://pythonconquerstheuniverse.wordpress.com/2012/04/29/python-decorators/][The right way to explain decorators?]]
+#+BEGIN_QUOTE
+there are two things wrong with this approach to explaining decorators. The first is that the explanation begins in the wrong place. It starts with an example of a function to be decorated and an decoration line, when it should begin with the decorator itself. The explanation should end, not start, with the decorated function and the decoration line. 
+#+END_QUOTE
+Python's functions are first class objects, can be passed around, return by functions, etc
+The return value of the decorator replaces the original function
+*** Matt Harrison's Guide To Python Decorators, $5: http://www.amazon.com/Guide-Learning-Python-Decorators-ebook/dp/B006ZHJSIM/
+** [[http://pythonconquerstheuniverse.wordpress.com/2012/04/29/python-decorators/#comment-1601][A problem looking for a solution]]
+#+BEGIN_QUOTE
+In the case of almost all (or all?) current introductions to decorators, once you’ve read the introduction you’ve got a solution looking for a problem. It is like being handed a tool without any explanation of what you can do with the tool.
+#+END_QUOTE
+** [[http://kentsjohnson.com/kk/00001.html][Kent Johnson's take]]
+Decorators with arguments are decorator factories
+** [[http://www.ibm.com/developerworks/library/l-cpdecor/index.html][IBM DeveloperWorks]]
+classmethod, staticmethod, and properties are one big use of decorators
+Too many decorators makes it hard to follow what will happen when you call the function - you may want to put important functionality inside the function (logging, memoizing) rather than a decorator in some cases
+If the function could work the way it's supposed to without the decorator, then it's good - but if you'd always want to do some logging, maybe include it
+elementwise() decorator - easily make functions that either apply to a single thing, or to a sequence of things
+** [[http://www.linux-mag.com/id/5377/][Linux Mag]]
+applying decorators later, to other people's functions, or don't want to replace
+** [[http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html][Patterns and idioms]]
+class decorators
+** [[http://hairysun.com/downloads/DecoratorHandout.pdf][Cheatsheet]]
+* Technical details
+** Sacha on presenting in Emacs: http://sachachua.com/blog/2013/04/how-to-present-using-org-mode-in-emacs/
+** Most likely candidate: https://github.com/rlister/org-present
+** Sacha's code: https://gist.github.com/sachac/5278905
+ Kind of cool, has :slide declarations and :optional declarations
+** Exporting to HTML: http://orgmode.org/worg/org-tutorials/non-beamer-presentations.html#sec-3
+** Centering so it looks good? M-o M-s to center
+** In big font mode, wrap at 68
+** Testing org babel
+# created by < then s then tab
+#+BEGIN_SRC python :results output
+print("Hello, world!")
+#+END_SRC
+
+#+RESULTS:
+: Hello, world!
