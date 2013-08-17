@@ -1,5 +1,8 @@
 # -*- org-confirm-babel-evaluate: nil; fill-column: 160;-*-
-* Setup
+#+Title: Decorators in Python
+#+Author: Matthew Darling
+#+Email: matthewjdarling@gmail.com
+* Setup                                                            :noexport:
 Emacs Lisp code for sending Python output to a temporary buffer
 #+name: my-post
 #+BEGIN_SRC emacs-lisp :input="" :results verbatim
@@ -23,7 +26,7 @@ from __future__ import print_function
 * Preface
 Fair warning: I may omit details/tell white lies (at first)
 
-Also, pretty much all my examples are barely-modified versions of stuff I found online - the original links should all be in my [[https://github.com/MatthewDarling/PythonDecorators/edit/master/EdmontonPyPresentation.org#research-notes]["Research Notes"]] section
+Also, pretty much all my examples are barely-modified versions of stuff I found online - the original links should all be in my prep file under the [[https://github.com/MatthewDarling/PythonDecorators/blob/master/Prep.org]["Content notes"]] section
 * What a decorator is
 - Decorators are functions that modify other functions (white lie: you can actually use any callable, ie classes - see the link to [[http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html][Python Patterns, Recipes, and Idioms]])
 - You can use them on your own functions, and on functions from an imported module
@@ -150,8 +153,10 @@ A decorator with arguments means: "wrap this function with the output of the dec
 
 Here's how it works:
 #+BEGIN_SRC python
-  example(test("this is a test")) #call example with the return value of test
-  test_factory(args=[])("this is a test") #call the return value of test_factory with "this is a test"
+  #call example with the return value of test
+  example(test("this is a test"))
+  #call the return value of test_factory with "this is a test"
+  test_factory(args=[])("this is a test")
   #Factory returns a function
   #Call its return value with "this is a test"
 #+END_SRC
@@ -166,7 +171,9 @@ Courtesy of [[http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud
   from Flask import flask
   app = Flask(__name__)
   
-  @app.route('/') #the app.route decorator has an argument - technically, you could call it a decorator factory
+  #the app.route decorator has an argument
+  #technically, you could call it a decorator factory
+  @app.route('/')
   def index():
       return "Hello, EdmontonPy!"
       
@@ -233,6 +240,9 @@ Remember how we saw "After calling the decorator, the function's name is wrapper
 You will never be able to debug that
 
 Solutions: functools.wraps, or the [[https://pypi.python.org/pypi/decorator][decorator module]]
+- functools.wraps is lightweight and does the most important things
+- The decorator module offers a bit of extra functionality (check the docs)
+- But which you use is more a question of personal/aesthetic preference
 * functools example
 #+BEGIN_SRC python :session examples :results output :post my-post(input=*this*)
   from functools import wraps
@@ -283,7 +293,7 @@ Output:
 
 * Decorators are often complicated
 Chris McDonough, author of Pyramid, thinks that there are often simpler ways to accomplish what decorators do - namely, including the same code in the body of your function
-* Importance of the decorator
+* How important is the decorator?
 It really depends on how crucial the functionality of the decorator is to the job the function does
 
 Example: If you always want to do some logging in a function, put it in the function.
@@ -300,7 +310,9 @@ It then executes your code based on how you've configured it - see the next two 
   from Flask import flask
   app = Flask(__name__)
   
-  @app.route('/') #when someone visits "http://www.examplesite.com/", they'll see "Hello, EdmontonPy!"
+  #when someone visits "http://www.examplesite.com/", 
+  #they'll see "Hello, EdmontonPy!"
+  @app.route('/')
   def index():
       return "Hello, EdmontonPy!"
       
@@ -313,7 +325,8 @@ It then executes your code based on how you've configured it - see the next two 
   import aaargh
   app = aaargh.App(description="A simple greeting application.")
   
-  @app.cmd #if the program is called with "hello" as an argument, this function is called
+  #if the program is called with "hello" as an argument, this function is called
+  @app.cmd
   def hello():
       print("Hello, EdmontonPy!", end="")
   
@@ -374,55 +387,3 @@ The built-in [[http://docs.python.org/2/library/functools.html#functools.wraps][
 of improving testability
 * Things I explicitly avoided here
 Using classes for decorators, class decorators (they are different), some of the finer points of decorating methods (functions defined in a class)
-* Research notes
-** [[http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484][The infamous StackOverflow answer]]
-Since when you are calling the function returned by the decorator, you are calling the wrapper, passing arguments to the wrapper will let it pass them to the decorated function
-
-Interesting examples: counting the number of times you call a function (I've used this), benchmarking
-** [[http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/][SatlyCrane on args and kwargs]]
-*args is tuple unpacking, **kwargs is dict unpacking
-** [[http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud-python-decorators_8528.html][Flask and how decorator factories work]]
-"wrap this function with the output of the decorator factory"
-I know Flask uses them for routes, and Django for a variety of things - I haven't worked with either though
-** [[http://plope.com/Members/chrism/now_not_to_write_python][Chris McDonough, author of Pyramid, says too many decorators are bad]]
-#+BEGIN_QUOTE
-[Don't] use "@" decorator syntax gratiutiously. I'm glad you know how to use it, and I'm suitably impressed. But pretty soon you're going to realize how ridiculous what you're doing is.
-#+END_QUOTE
-** [[http://www.plope.com/Members/chrism/not_todo_inverse][What you should do instead]]
-#+BEGIN_QUOTE
-Don't use decorators to do things you could do in a simpler way.
-#+END_QUOTE
-** [[http://blog.extracheese.org/2007/09/globals-and-cargo-culting.html][In ancient times (2007), Gary Bernhardt wrote:]]
-#+BEGIN_QUOTE
-If you choose [a singleton] or [a decorator that may involve a singleton], the joke's on you. You're still using a global, but now you have two problems: global state and a complicated method for managing it. There's no need for that, because we already have a simple method for injecting instances into a module's functions: globals!
-#+END_QUOTE
-** [[http://pythonconquerstheuniverse.wordpress.com/2012/04/29/python-decorators/][The right way to explain decorators?]]
-#+BEGIN_QUOTE
-there are two things wrong with this approach to explaining decorators. The first is that the explanation begins in the wrong place. It starts with an example of a function to be decorated and an decoration line, when it should begin with the decorator itself. The explanation should end, not start, with the decorated function and the decoration line. 
-#+END_QUOTE
-Python's functions are first class objects, can be passed around, return by functions, etc
-
-The return value of the decorator replaces the original function
-*** [[http://www.amazon.com/Guide-Learning-Python-Decorators-ebook/dp/B006ZHJSIM/][Matt Harrison's Guide To Python Decorators]], is $5 and really good
-** [[http://pythonconquerstheuniverse.wordpress.com/2012/04/29/python-decorators/#comment-1601][A problem looking for a solution]]
-#+BEGIN_QUOTE
-In the case of almost all (or all?) current introductions to decorators, once you’ve read the introduction you’ve got a solution looking for a problem. It is like being handed a tool without any explanation of what you can do with the tool.
-#+END_QUOTE
-** [[http://kentsjohnson.com/kk/00001.html][Kent Johnson's take]]
-Decorators with arguments are decorator factories
-** [[http://www.ibm.com/developerworks/library/l-cpdecor/index.html][IBM DeveloperWorks]]
-classmethod, staticmethod, and properties are one big use of decorators
-
-Too many decorators makes it hard to follow what will happen when you call the function - you may want to put important functionality inside the function (logging, memoizing) rather than a decorator in some cases
-
-If the function could work the way it's supposed to without the decorator, then it's good - but if you'd always want to do some logging, maybe include it
-
-elementwise() decorator - easily make functions that either apply to a single thing, or to a sequence of things
-** [[http://www.linux-mag.com/id/5377/][Linux Mag]]
-Interesting idea about applying decorators later, and to other people's functions, or if you don't want to replace the original
-
-Has a with_timeout() decorator
-** [[http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html][Patterns and idioms]]
-Has some stuff about class decorators
-** [[http://hairysun.com/downloads/DecoratorHandout.pdf][Cheatsheet by Matt Harrison]]
-Since it has to fit on one page, there's obviously some details missing - but it's good as a "what should my decorator look like?" reference
