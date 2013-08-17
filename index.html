@@ -16,7 +16,7 @@
     <div class="wrapper">
       <header>
         <h1>PythonDecorators</h1>
-        <p>A presentation for EdmontonPy&#39;s August 2013 meeting - about decorators in Python. Here, you can read it in plain text or view as a slideshow. If you clone the repo and opne the .org file within Emacs, you get live code evaluation and other fun stuff.</p>
+        <p>A presentation for EdmontonPy&#39;s August 2013 meeting - about decorators in Python. Here, you can read it in plain text or view as a slideshow. If you clone the repo and open the .org file within Emacs, you get live code evaluation and other fun stuff.</p>
 
         <p class="view"><a href="https://github.com/MatthewDarling/PythonDecorators">View the Project on GitHub <small>MatthewDarling/PythonDecorators</small></a></p>
 
@@ -28,37 +28,20 @@
         </ul>
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <p>Ways you can view the presentation:</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<ul>
+<li><a href="EdmontonPyPresentation.org">Online as plain text</a></li>
+<li><a href="S5/Presentation.html">Online as an HTML presentation</a></li>
+<li>Offline in Emacs, with code evaluation and org-present support - download the <a href="EdmontonPyPresentation.org">org file</a>, and you can attempt to follow the instructions below</li>
+</ul><h1>
+<a name="technical-notes" class="anchor" href="#technical-notes"><span class="octicon octicon-link"></span></a>Technical notes</h1>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>If you're curious, my <a href="https://github.com/MatthewDarling/.emacs">Emacs setup</a> is available. I used <a href="https://github.com/rlister/org-present/">org-present</a> to do the heavy lifting. You'll want to add some hooks to org-present-mode so that it behaves properly - you can see my org-specific configuration at the time is in <a href="https://github.com/MatthewDarling/.emacs/blob/c5c3e54a12aef371f0a66fda0bdcd6ad6329fa8c/init-org.el">this file</a>. The stuff for org-present is at the bottom, should be pretty clear. Also, before running the various examples, you'll want to eval the code blocks under the "Setup" heading (it may work without doing that, I'm not sure).</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Also, I recorded a really awesome/really fragile macro to execute the first code block in a "slide" with one button, and open up the *output* buffer. This worked out surprisingly well! You can see that <a href="https://github.com/MatthewDarling/.emacs/blob/c5c3e54a12aef371f0a66fda0bdcd6ad6329fa8c/init-org.el#L66">here</a>.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>I also used a script made in <a href="autohotkey.com">AutoHotKey</a> to turn my PowerPoint-focused presenter remote into something actually useful. You can see that <a href="https://github.com/MatthewDarling/PythonDecorators/blob/master/presenting.ahk">here</a>.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/MatthewDarling">MatthewDarling</a></p>
