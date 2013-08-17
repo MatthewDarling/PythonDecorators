@@ -1,0 +1,79 @@
+Example of a singly nested function with the module:
+#+BEGIN_SRC python
+  @decorator
+  def trace(f, *args, **kw):
+      print "calling %s with args %s, %s" % (f.func_name, args, kw)
+      return f(*args, **kw)
+#+END_SRC
+Using the decorator module does require some nesting if your decorator takes arguments, eg:
+#+BEGIN_SRC python
+  def blocking(busy_message):
+      def blocking(f, *args, **kw):
+            #... implementation ...
+      return decorator(blocking)
+#+END_SRC
+Decorator module also supports class-based decorators, eg:
+#+BEGIN_SRC python
+  async = decorator(Async(threading.Thread))
+#+END_SRC
+...where Async is a class, and async is now the decorator you use with @async
+Really cool addition: Python 3.2 allows context managers to be callable, but the decorator module implements this for Python 2.5+
+#+BEGIN_QUOTE
+the decorator module, starting with release 3.4, offers a decorator.contextmanager decorator that solves both problems and works even in Python 2.5. The usage is the same and factories decorated with decorator.contextmanager will returns instances of ContextManager, a subclass of contextlib.GeneratorContextManager with a __call__ method acting as a signature-preserving decorator.
+#+END_QUOTE
+If you need the source of the original function for some reason, you can get it using:
+#+BEGIN_SRC python
+inspect.getsource(factorial.__wrapped__)
+#+END_SRC
+If you find a decorator online that doesn't use the decorator module, if you're too lazy to rewrite it, you can use this decorator instead:
+#+BEGIN_SRC python
+  def decorator_apply(dec, func):
+      """
+      Decorate a function by preserving the signature even if dec
+      is not a signature-preserving decorator.
+      """
+      return FunctionMaker.create(
+          func, 'return decorated(%(signature)s)',
+          dict(decorated=dec(func)), __wrapped__=func)
+#+END_SRC
+
+Decorators, at least using the decorator module, can be affect performance:
+#+BEGIN_SRC sh
+  python -m timeit -s "
+  from decorator import decorator
+  
+  @decorator
+  def do_nothing(func, *args, **kw):
+      return func(*args, **kw)
+  
+  @do_nothing
+  def f():
+      pass
+      " "f()"
+  
+  python -m timeit -s "
+  from decorator import decorator
+  
+  def f():
+      pass
+      " "f()"
+#+END_SRC
+
+#+RESULTS:
+| 1000000 loops  | best of 3: 0.5 usec per loop  |
+| 10000000 loops | best of 3: 0.11 usec per loop |
+...but do 0.4 microseconds per function call matter in most cases?
+Decorators created with the decorator module can only decorate user-defined functions and methods - no built-in functions or other callables (eg classes)
+#+BEGIN_SRC python
+  trace(Class.method.im_func)
+#+END_SRC
+Also, worth noting is that PEP 262 introduces a function signature object, so after Python 3.3, the decorator module is a bit superfluous
+    - The [[https://pypi.python.org/pypi/funcsigs][funcsigs]] package implements this functionality for Python 2.6, 2.7, and 3.2
+    - It's not clear to me how one would use this to replicate the functionality of the decorator module, however
+#+BEGIN_SRC python :results output
+  from funcsigs import signature
+  def foo(a, b=None, *args, **kwargs):
+      pass
+  sig = signature(foo)
+  #TODO: assign 
+#+END_SRC
