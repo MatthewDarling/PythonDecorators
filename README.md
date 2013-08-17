@@ -3,7 +3,7 @@ Python Decorators
 
 On a whim, I decided I was brave enough to give a presentation at [EdmontonPy](http://edmontonpy.com/) before I went back home to Ottawa. I also decided to give the presentation via Emacs. Granted, I spent several hours learning about Emacs Lisp and org-mode, but it was *a ton of fun* once I got everything working.
 
-The full org-mode source of the presentation can be [viewed online via GitHub](EdmontonPyPresentation.org), which works reasonably well. If you download that file, you can open it in Emacs and execute all the code examples and stuff.
+The full org-mode source of the presentation can be [viewed online via GitHub](Presentation.org), which works reasonably well. If you download that file, you can open it in Emacs and execute all the code examples and stuff.
 
 After several hours of fiddling, I managed to export the presentation to [S5](http://meyerweb.com/eric/tools/s5/), using the exporter in Org 8's contrib files. I had to manually edit the output a bit - I'm going to write a blog post about the steps involved and I'll link to it here when I'm done.
 
