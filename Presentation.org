@@ -31,7 +31,7 @@ Also, pretty much all my examples are barely-modified versions of stuff I found 
 - Decorators are functions that modify other functions (white lie: you can actually use any callable, ie classes - see the link to [[http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html][Python Patterns, Recipes, and Idioms]])
 - You can use them on your own functions, and on functions from an imported module
 * The long way
-When you're using a decorator, what you're really doing is this:
+When you're using a decorator, what you're really doing is this (where cache is a decorator that implements, well, [[http://en.wikipedia.org/wiki/Cache_(computing)][caching]]):
 #+BEGIN_SRC python :results silent
   function = cache(function)
 #+END_SRC
@@ -73,14 +73,13 @@ And you're done! Pat yourself on the back
 #+END_SRC
 Output:
 #+RESULTS:
-: "
 : Before we call the decorator, we've defined hello
 : I'm the decorator - my argument must be a function
 : This is the wrapper - it calls the original function
 : You called hello
 : Hello
 : Now we return the result of the function call
-: After calling the decorator, the function's name is wrapper"
+: After calling the decorator, the function's name is wrapper
 
 * How to decorate a function with known arguments
 If you know exactly how many arguments your function takes, you can hardcode the number of arguments for the wrapper function:
@@ -105,10 +104,9 @@ If you know exactly how many arguments your function takes, you can hardcode the
 #+END_SRC
 Output:
 #+RESULTS:
-: "
 : 124
 : [0, 7, 26]
-: (0, 7, 26)"
+: (0, 7, 26)
 
 * How to decorate a function with unknown arguments
 But if you want your generator to be more general, you need to [[http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/][support any possible combination of arguments]]:
@@ -138,7 +136,7 @@ But if you want your generator to be more general, you need to [[http://www.salt
 #+END_SRC
 Output:
 #+RESULTS:
-: "Experimenting with: nothing
+: Experimenting with: nothing
 : Breaking news: Read all about it!
 : The function waste_time took 2.99943593545
 : Experimenting with: decorators
@@ -146,12 +144,18 @@ Output:
 : The function waste_time took 2.99978290028
 : Experimenting with: nothing
 : Breaking news: this is best presentation I've seen all day
-: The function waste_time took 2.9998539511"
+: The function waste_time took 2.9998539511
 
 * How to write a decorator factory
-A decorator with arguments means: "wrap this function with the output of the decorator factory"
+A decorator with arguments is sometimes called a "decorator factor". When you see
 
-Here's how it works:
+#+BEGIN_SRC python
+@decorator(argument)
+#+END_SRC
+
+read it as: "wrap this function with the output of the decorator factory"
+
+* Here's how it works:
 #+BEGIN_SRC python
   #call example with the return value of test
   example(test("this is a test"))
@@ -166,7 +170,7 @@ Similar to:
   #Call decorator_factory(argument), then call its return value with function
 #+END_SRC
 * Very simple decorator factory with Flask
-Courtesy of [[http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud-python-decorators_8528.html][this blog post]], here's an example:
+Courtesy of [[http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud-python-decorators_8528.html][this blog post]], here's a simple example:
 #+BEGIN_SRC python
   from Flask import flask
   app = Flask(__name__)
@@ -223,7 +227,7 @@ Courtesy of [[http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud
 #+END_SRC
 Output:
 #+RESULTS:
-: "Calling the factory with no arguments
+: Calling the factory with no arguments
 : You've called the deprecated factory with None
 : Calling the factory with a replacement function
 : You've called the deprecated factory with sum_many
@@ -232,12 +236,12 @@ Output:
 : The decorator function received sum_couple as its sole argument
 : Going to call sum_couple now
 : sum_couple is deprecated; use sum_many instead
-: 4"
+: 4
 
 * functools.wraps and the decorator module
 Remember how we saw "After calling the decorator, the function's name is wrapper"?
 
-You will never be able to debug that
+You'll never be able to debug that, because every decorated function will have a __name__ of "wrapper"
 
 Solutions: functools.wraps, or the [[https://pypi.python.org/pypi/decorator][decorator module]]
 - functools.wraps is lightweight and does the most important things
@@ -264,10 +268,9 @@ Solutions: functools.wraps, or the [[https://pypi.python.org/pypi/decorator][dec
 #+END_SRC
 Output:
 #+RESULTS:
-: "
 : I'm the decorator - I can only take one argument
 : This is your wrapper speaking
-: Hello"
+: Hello
 
 * decorator module example
 #+BEGIN_SRC python :session examples :results output :post my-post(input=*this*)
@@ -287,20 +290,24 @@ Output:
 #+END_SRC
 Output:
 #+RESULTS:
-: "
 : I'm the wrapper
-: Hello"
+: Hello
 
 * Decorators are often complicated
 Chris McDonough, author of Pyramid, thinks that there are often simpler ways to accomplish what decorators do - namely, including the same code in the body of your function
+
+As I see it, there are three criteria you can think about:
+- Whether the decorator provides core behaviour to the function
+- Whether you're writing a framework (defined soon)
+- Whether you're trying to fix someone else's function(s)
 * How important is the decorator?
-It really depends on how crucial the functionality of the decorator is to the job the function does
+Whether you should use a decorator can depend  on how crucial the behaviour of the decorator is to what the function does
 
 Example: If you always want to do some logging in a function, put it in the function.
 
 If you're turning on logging temporarily, or it's optional - then a decorator you can disable makes sense.
 * Decorators in frameworks
-Decorators are good for "frameworks" - eg web frameworks like Flask, Django, and command line frameworks like Aaargh - where the decorator executes the user's code
+Decorators are good for "frameworks" - eg web frameworks like [[http://flask.pocoo.org/][Flask]], [[https://www.djangoproject.com/][Django]], and command line frameworks like [[https://pypi.python.org/pypi/aaargh][Aaargh]] - where the decorator executes the user's code
 
 In short, rather than having your own main()-like function, when you're using a framework you use *their* main()-like function
 
@@ -338,7 +345,9 @@ Output:
 : "Hello, EdmontonPy!"
 
 * Decorating other people's code
-Decorators can be applied after function definition, and we can save the result with a new name:
+Remember how I showed the "long way" of using decorators earlier, without the @-syntax? Well, that can be useful sometimes!
+
+It can let you apply a decorator after a function is defined, and unlike the @-syntax, you can save the result with a new name:
 #+BEGIN_SRC python
 foo = decorator(bar)
 #+END_SRC
@@ -349,7 +358,9 @@ As a bonus, you can even do this to functions defined in other modules, without 
 
 Also, you CAN save the result with the same name, but I think it would be local to your module, and you might be surprised what happens when code in other modules tries to use the function
 * Why and how decorators function
-If you thought *[[http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python][closures]]* were pointless and academic, think again!
+...Well, I would get into it if I had more time
+
+But I will say this: If you thought *[[http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python][closures]]* were pointless and academic, think again!
 - Not that the accepted answer for that question will help any, but the other answers are each a little bit helpful
 
 If you want to know more, check out Matt Harrison's
@@ -357,7 +368,7 @@ If you want to know more, check out Matt Harrison's
  
 That's not an affiliate link, it's just a really good, concise explanation of all the things that are important behind the scenes. This includes functions as first class objects and closures, which seem tangential, but actually aren't.
 
-Closures can turn ugly, awful code (like loops with multiple exit points that require cleanup) into really nice code. A++ would use again.
+Also, personal anecdote: Closures can turn ugly, awful code (like loops with multiple exit points that require cleanup) into really nice code. [[http://xkcd.com/325/][A++ would use again]].
 * Useful decorators
 ** Top three
 - [[http://code.activestate.com/recipes/577819-deprecated-decorator/][Deprecation that auto-calls the new function]]
@@ -379,11 +390,13 @@ Closures can turn ugly, awful code (like loops with multiple exit points that re
 - [[http://www.linux-mag.com/id/5377/][Timeout for long functions]] (POSIX systems only, sorry Windows users :( )
 - Variations of init methods that don't require any "self.x = x" junk: [[http://stackoverflow.com/questions/3884612/automatically-setting-class-member-variables-in-python/3884624#3884624][v1]], [[http://stackoverflow.com/a/1389216/1137749][v2]], [[http://code.activestate.com/recipes/286185-automatically-initializing-instance-variables-from/][v3]]
 * Tools for writing decorators
-[[micheles.googlecode.com/hg/decorator/documentation.html][Decorator module]], as previously mentioned
+[[https://pypi.python.org/pypi/decorator][Decorator module]], as previously mentioned
 
 The built-in [[http://docs.python.org/2/library/functools.html#functools.wraps][functools.wraps]]
 
 [[http://docs.pylonsproject.org/projects/venusian/en/latest/#using-venusian][Venusian offers delayed decorator application]], with the main goal 
 of improving testability
-* Things I explicitly avoided here
+* Things I intentionally avoided here
 Using classes for decorators, class decorators (they are different), some of the finer points of decorating methods (functions defined in a class)
+
+See [[http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html][Bruce Eckel's Python 3 book]] for more detail on class related stuff, and some other links in my [[https://github.com/MatthewDarling/PythonDecorators/blob/master/Prep.org][disorganized prep file]]
