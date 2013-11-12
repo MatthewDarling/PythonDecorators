@@ -2,7 +2,7 @@
    Note that the 'body' font size may have to be changed if the resolution is
    different than expected. */
 
-.slide { margin-bottom: 1400px; } /* Make sure only one slide is visible at a time */
+.slide { margin-bottom: 3400px; } /* Make sure only one slide is visible at a time */
    
 body {
     background: #232323 100% 100% no-repeat;
