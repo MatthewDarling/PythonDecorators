@@ -383,7 +383,9 @@ The function waste_time took 2.9998539511
 <p>
 A decorator that takes arguments arguments is sometimes called a "decorator factory".
 
-What it means when you see <pre class="src src-python">@decorator(argument)</pre>: "wrap this function with the output of the decorator factory"
+When you see <pre class="src src-python">@decorator(argument)</pre>
+
+read it as: "wrap the following function with the output of the decorator factory"
 </p>
 
 <p>
@@ -602,7 +604,9 @@ Hello
 <div class="outline-text-2" id="text-17">
 <p>
 Chris McDonough, author of Pyramid, thinks that there are often simpler ways to accomplish what decorators do - namely, including the same code in the body of your function
+</p>
 
+<p>
 As I see it, there are three criteria you can think about:
 <ul class='org-ul'>
 <li>Whether the decorator provides core behaviour to the function
@@ -818,7 +822,7 @@ Also, personal anecdote: Closures can turn ugly, awful code (like loops with mul
 <h1 id="sec-25">Tools for writing decorators</h1>
 <div class="outline-text-2" id="text-25">
 <p>
-<i>Decorator module</i>, as previously mentioned
+<a href="https://pypi.python.org/pypi/decorator">Decorator module</a>, as previously mentioned
 </p>
 
 <p>
