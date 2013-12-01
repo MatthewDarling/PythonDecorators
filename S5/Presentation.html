@@ -813,6 +813,14 @@ The built-in <a href="http://docs.python.org/2/library/functools.html#functools.
 <a href="http://docs.pylonsproject.org/projects/venusian/en/latest/#using-venusian">Venusian offers delayed decorator application</a>, with the main goal 
 of improving testability
 </p>
+
+<p>
+A <a href="http://lanyrd.com/2013/kiwipycon/scpkbk/">recent talk at PyCon New Zealand</a> introduced me to a modern take on the decorator module: <a href="http://wrapt.readthedocs.org/en/latest/">called wrapt</a>, it aims to make utterly flawless decorators that work on everything. In pure Python, it's about twice as slow as the original module; with the C extension, it's actually a little bit faster. It does make your decorator's definition look a bit boilerplate-y, since all the arguments go to one function, but the functionality seems solid.
+</p>
+
+<p>
+There's also a package <a href="http://hackflow.com/blog/2013/11/03/painless-decorators/">called funcy</a> which looks interesting, aesthetically at least. Maybe don't use it in production, but I like that you can make decorator factories without any nesting.
+</p>
 </div>
 </div>
 
