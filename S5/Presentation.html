@@ -20,6 +20,7 @@
  <!--/*--><![CDATA[/*><!--*/
   body { overflow: hidden; }
   #slide0 h1 { padding-right: 0; }
+  .slide { margin-bottom: 1400px; } 
   .title  { text-align: center; }
   h1 { text-align: center; }
   h2 { text-align: center; }
@@ -159,7 +160,7 @@ for the JavaScript code in this tag.
 <div id="content" class="presentation">
 <div id='title-slide' class='slide'>
 <h1>Intro to Decorators in Python</h1>
-<h1><a href="http://www.twitter.com/EdmontonPy" target="_blank">@EdmontonPy</a><h1>
+<h1><a href=http://www.twitter.com/EdmontonPy>@EdmontonPy</a><h1>
 <h2><a href="mailto:matthewjdarling@gmail.com">Matthew Darling</a></h2>
 <h2>August 12th, 2013<h2>
 <h2></h2>
@@ -173,7 +174,7 @@ Fair warning: I may omit details/tell white lies (at first)
 </p>
 
 <p>
-Also, pretty much all my examples are barely-modified versions of stuff I found online - the original links should all be in my prep file under the <a href="https://github.com/MatthewDarling/PythonDecorators/blob/master/Prep.org" target="_blank">"Content notes"</a> section
+Also, pretty much all my examples are barely-modified versions of stuff I found online - the original links should all be in my prep file under the <a href="https://github.com/MatthewDarling/PythonDecorators/blob/master/Prep.org">"Content notes"</a> section
 </p>
 </div>
 </div>
@@ -182,7 +183,7 @@ Also, pretty much all my examples are barely-modified versions of stuff I found 
 <h1 id="sec-2">What a decorator is</h1>
 <div class="outline-text-2" id="text-2">
 <ul class='org-ul'>
-<li>Decorators are functions that modify other functions (white lie: you can actually use any callable, ie classes - see the link to <a href="http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html" target="_blank">Python Patterns, Recipes, and Idioms</a>)
+<li>Decorators are functions that modify other functions (white lie: you can actually use any callable, ie classes - see the link to <a href="http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html">Python Patterns, Recipes, and Idioms</a>)
 </li>
 <li>You can use them on your own functions, and on functions from an imported module
 </li>
@@ -194,7 +195,7 @@ Also, pretty much all my examples are barely-modified versions of stuff I found 
 <h1 id="sec-3">The long way</h1>
 <div class="outline-text-2" id="text-3">
 <p>
-When you're using a decorator, what you're really doing is this (where cache is a decorator that implements, well, <a href="http://en.wikipedia.org/wiki/Cache_%28computing%29" target="_blank">caching</a>):
+When you're using a decorator, what you're really doing is this:
 </p>
 <div class="org-src-container">
 
@@ -231,13 +232,13 @@ And you're done! Pat yourself on the back
 <h1 id="sec-5">OOP examples</h1>
 <div class="outline-text-2" id="text-5">
 <ul class='org-ul'>
-<li><a href="http://julien.danjou.info/blog/2013/guide-python-static-class-astract-methods" target="_blank">@classmethod</a>
+<li><a href="http://julien.danjou.info/blog/2013/guide-python-static-class-astract-methods">@classmethod</a>
 </li>
-<li><a href="http://julien.danjou.info/blog/2013/guide-python-static-class-astract-methods" target="_blank">@staticmethod</a>
+<li><a href="http://julien.danjou.info/blog/2013/guide-python-static-class-astract-methods">@staticmethod</a>
 </li>
-<li><a href="http://docs.python.org/2/library/abc.html#abc.abstractmethod" target="_blank">@abc.abstractmethod</a> in Python 3+
+<li><a href="http://docs.python.org/2/library/abc.html#abc.abstractmethod">@abc.abstractmethod</a> in Python 3+
 </li>
-<li><a href="http://me.veekun.com/blog/2012/05/23/python-faq-descriptors/" target="_blank">@properties</a> (a transparent alternative to getters/setters - take that, Java!)
+<li><a href="http://me.veekun.com/blog/2012/05/23/python-faq-descriptors/">@properties</a> (a transparent alternative to getters/setters - take that, Java!)
 </li>
 </ul>
 </div>
@@ -273,13 +274,14 @@ hello()
 Output:
 </p>
 <pre class="example">
+"
 Before we call the decorator, we've defined hello
 I'm the decorator - my argument must be a function
 This is the wrapper - it calls the original function
 You called hello
 Hello
 Now we return the result of the function call
-After calling the decorator, the function's name is wrapper
+After calling the decorator, the function's name is wrapper"
 </pre>
 </div>
 </div>
@@ -316,9 +318,10 @@ If you know exactly how many arguments your function takes, you can hardcode the
 Output:
 </p>
 <pre class="example">
+"
 124
 [0, 7, 26]
-(0, 7, 26)
+(0, 7, 26)"
 </pre>
 </div>
 </div>
@@ -327,7 +330,7 @@ Output:
 <h1 id="sec-8">How to decorate a function with unknown arguments</h1>
 <div class="outline-text-2" id="text-8">
 <p>
-But if you want your decorator to be more general, you need to <a href="http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/" target="_blank">support any possible combination of arguments</a>:
+But if you want your generator to be more general, you need to <a href="http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/">support any possible combination of arguments</a>:
 </p>
 <div class="org-src-container">
 
@@ -365,7 +368,7 @@ waste_time(3, extra=<span style="color: #E6DB74;">"this is best presentation I'v
 Output:
 </p>
 <pre class="example">
-Experimenting with: nothing
+"Experimenting with: nothing
 Breaking news: Read all about it!
 The function waste_time took 2.99943593545
 Experimenting with: decorators
@@ -373,7 +376,7 @@ Breaking news: Read all about it!
 The function waste_time took 2.99978290028
 Experimenting with: nothing
 Breaking news: this is best presentation I've seen all day
-The function waste_time took 2.9998539511
+The function waste_time took 2.9998539511"
 </pre>
 </div>
 </div>
@@ -381,16 +384,9 @@ The function waste_time took 2.9998539511
 <h1 id="sec-10">How to write a decorator factory</h1>
 <div class="outline-text-2" id="text-10">
 <p>
-A decorator that takes arguments arguments is sometimes called a "decorator factory".
-
-When you see <pre class="src src-python">@decorator(argument)</pre>
-
-read it as: "wrap the following function with the output of the decorator factory"
+A decorator with arguments means: "wrap this function with the output of the decorator factory"
 </p>
-</div>
-</div>
 
-<div id="outline-container-sec-11" class="outline-1  slide">
 <p>
 Here's how it works:
 </p>
@@ -414,12 +410,13 @@ Similar to:
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-12" class="outline-1  slide">
-<h1 id="sec-12">Very simple decorator factory with Flask</h1>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-sec-11" class="outline-1  slide">
+<h1 id="sec-11">Very simple decorator factory with Flask</h1>
+<div class="outline-text-2" id="text-11">
 <p>
-Courtesy of <a href="http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud-python-decorators_8528.html" target="_blank">this blog post</a>, here's a simple example:
+Courtesy of <a href="http://curiosityhealsthecat.blogspot.in/2013/06/thinking-out-aloud-python-decorators_8528.html">this blog post</a>, here's an example:
 </p>
 <div class="org-src-container">
 
@@ -439,9 +436,9 @@ Courtesy of <a href="http://curiosityhealsthecat.blogspot.in/2013/06/thinking-ou
 </div>
 </div>
 
-<div id="outline-container-sec-13" class="outline-1  slide">
-<h1 id="sec-13">Real example of a decorator factory</h1>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-sec-12" class="outline-1  slide">
+<h1 id="sec-12">Real example of a decorator factory</h1>
+<div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">deprecated</span>(replacement=<span style="color: #AE81FF;">None</span>):
@@ -465,9 +462,9 @@ Courtesy of <a href="http://curiosityhealsthecat.blogspot.in/2013/06/thinking-ou
 </div>
 </div>
 
-<div id="outline-container-sec-14" class="outline-1  slide">
-<h1 id="sec-14">Example usage</h1>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-sec-13" class="outline-1  slide">
+<h1 id="sec-13">Example usage</h1>
+<div class="outline-text-2" id="text-13">
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #66D9EF;">print</span>(<span style="color: #E6DB74;">"Calling the factory with no arguments"</span>)
@@ -496,7 +493,7 @@ Courtesy of <a href="http://curiosityhealsthecat.blogspot.in/2013/06/thinking-ou
 Output:
 </p>
 <pre class="example">
-Calling the factory with no arguments
+"Calling the factory with no arguments
 You've called the deprecated factory with None
 Calling the factory with a replacement function
 You've called the deprecated factory with sum_many
@@ -505,14 +502,14 @@ You've called the deprecated factory with sum_many
 The decorator function received sum_couple as its sole argument
 Going to call sum_couple now
 sum_couple is deprecated; use sum_many instead
-4
+4"
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-15" class="outline-1  slide">
-<h1 id="sec-15">functools.wraps and the decorator module</h1>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-sec-14" class="outline-1  slide">
+<h1 id="sec-14">functools.wraps and the decorator module</h1>
+<div class="outline-text-2" id="text-14">
 <p>
 Remember how we saw "After calling the decorator, the function's name is wrapper"?
 </p>
@@ -522,7 +519,7 @@ You'll never be able to debug that, because every decorated function will have a
 </p>
 
 <p>
-Solutions: functools.wraps, or the <a href="https://pypi.python.org/pypi/decorator" target="_blank">decorator module</a>
+Solutions: functools.wraps, or the <a href="https://pypi.python.org/pypi/decorator">decorator module</a>
 </p>
 <ul class='org-ul'>
 <li>functools.wraps is lightweight and does the most important things
@@ -535,9 +532,9 @@ Solutions: functools.wraps, or the <a href="https://pypi.python.org/pypi/decorat
 </div>
 </div>
 
-<div id="outline-container-sec-16" class="outline-1  slide">
-<h1 id="sec-16">functools example</h1>
-<div class="outline-text-2" id="text-16">
+<div id="outline-container-sec-15" class="outline-1  slide">
+<h1 id="sec-15">functools example</h1>
+<div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #66D9EF;">from</span> functools <span style="color: #66D9EF;">import</span> wraps
@@ -563,16 +560,17 @@ hello()
 Output:
 </p>
 <pre class="example">
+"
 I'm the decorator - I can only take one argument
 This is your wrapper speaking
-Hello
+Hello"
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-17" class="outline-1  slide">
-<h1 id="sec-17">decorator module example</h1>
-<div class="outline-text-2" id="text-17">
+<div id="outline-container-sec-16" class="outline-1  slide">
+<h1 id="sec-16">decorator module example</h1>
+<div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #66D9EF;">from</span> decorator <span style="color: #66D9EF;">import</span> decorator
@@ -595,39 +593,27 @@ hello()
 Output:
 </p>
 <pre class="example">
+"
 I'm the wrapper
-Hello
+Hello"
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-18" class="outline-1  slide">
-<h1 id="sec-18">Decorators are often complicated</h1>
-<div class="outline-text-2" id="text-18">
+<div id="outline-container-sec-17" class="outline-1  slide">
+<h1 id="sec-17">Decorators are often complicated</h1>
+<div class="outline-text-2" id="text-17">
 <p>
 Chris McDonough, author of Pyramid, thinks that there are often simpler ways to accomplish what decorators do - namely, including the same code in the body of your function
 </p>
-
-<p>
-As I see it, there are three criteria you can think about:
-<ul class='org-ul'>
-<li>Whether the decorator provides core behaviour to the function
-</li>
-<li>Whether you're writing a "framework" (defined soon)
-</li>
-<li>Whether you're trying to fix someone else's function(s)
-</li>
-</ul>
-
-</p>
 </div>
 </div>
 
-<div id="outline-container-sec-19" class="outline-1  slide">
-<h1 id="sec-19">How important is the decorator?</h1>
-<div class="outline-text-2" id="text-19">
+<div id="outline-container-sec-18" class="outline-1  slide">
+<h1 id="sec-18">How important is the decorator?</h1>
+<div class="outline-text-2" id="text-18">
 <p>
-Whether you should use a decorator might depend on how crucial the behaviour of the decorator is to what the function does
+It really depends on how crucial the functionality of the decorator is to the job the function does
 </p>
 
 <p>
@@ -640,11 +626,11 @@ If you're turning on logging temporarily, or it's optional - then a decorator yo
 </div>
 </div>
 
-<div id="outline-container-sec-20" class="outline-1  slide">
-<h1 id="sec-20">Decorators in frameworks</h1>
-<div class="outline-text-2" id="text-20">
+<div id="outline-container-sec-19" class="outline-1  slide">
+<h1 id="sec-19">Decorators in frameworks</h1>
+<div class="outline-text-2" id="text-19">
 <p>
-Decorators are good for "frameworks" - eg web frameworks like <a href="http://flask.pocoo.org/" target="_blank">Flask</a>, <a href="https://www.djangoproject.com/" target="_blank">Django</a>, and command line frameworks like <a href="https://pypi.python.org/pypi/aaargh" target="_blank">Aaargh</a> - where the decorator executes the user's code
+Decorators are good for "frameworks" - eg web frameworks like Flask, Django, and command line frameworks like Aaargh - where the decorator executes the user's code
 </p>
 
 <p>
@@ -652,14 +638,14 @@ In short, rather than having your own main()-like function, when you're using a 
 </p>
 
 <p>
-It then executes your decorated functions based on how you've configured it - see the next two examples
+It then executes your code based on how you've configured it - see the next two examples
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-21" class="outline-1  slide">
-<h1 id="sec-21">Web frameworks</h1>
-<div class="outline-text-2" id="text-21">
+<div id="outline-container-sec-20" class="outline-1  slide">
+<h1 id="sec-20">Web frameworks</h1>
+<div class="outline-text-2" id="text-20">
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #66D9EF;">from</span> Flask <span style="color: #66D9EF;">import</span> flask
@@ -678,9 +664,9 @@ It then executes your decorated functions based on how you've configured it - se
 </div>
 </div>
 
-<div id="outline-container-sec-22" class="outline-1  slide">
-<h1 id="sec-22">Command line programs</h1>
-<div class="outline-text-2" id="text-22">
+<div id="outline-container-sec-21" class="outline-1  slide">
+<h1 id="sec-21">Command line programs</h1>
+<div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #66D9EF;">from</span> __future__ <span style="color: #66D9EF;">import</span> print_function
@@ -693,7 +679,7 @@ It then executes your decorated functions based on how you've configured it - se
     <span style="color: #66D9EF;">print</span>(<span style="color: #E6DB74;">"Hello, EdmontonPy!"</span>, end=<span style="color: #E6DB74;">""</span>)
 
 <span style="color: #66D9EF;">if</span> <span style="color: #A6E22E;">__name__</span> == <span style="color: #E6DB74;">"__main__"</span>:
-    app.run([<span style="color: #E6DB74;">"hello"</span>]) <span style="color: #465457; font-style: italic;">#</span><span style="color: #809499; font-style: italic;">again, we're delegating to aaargh - though I'm faking a command line argument</span>
+    app.run([<span style="color: #E6DB74;">"hello"</span>]) <span style="color: #465457; font-style: italic;">#</span><span style="color: #809499; font-style: italic;">again, we're delegating to aaargh</span>
 </pre>
 </div>
 <p>
@@ -704,15 +690,11 @@ Output:
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-23" class="outline-1  slide">
-<h1 id="sec-23">Decorating other people's code</h1>
-<div class="outline-text-2" id="text-23">
+<div id="outline-container-sec-22" class="outline-1  slide">
+<h1 id="sec-22">Decorating other people's code</h1>
+<div class="outline-text-2" id="text-22">
 <p>
-Remember how I showed the "long way" of using decorators earlier, without the @-syntax? Well, that can be useful sometimes!
-</p>
-
-<p>
-It can let you apply a decorator after a function is defined, and unlike the @-syntax, you can save the result with a new name:
+Decorators can be applied after function definition, and we can save the result with a new name:
 </p>
 <div class="org-src-container">
 
@@ -734,15 +716,11 @@ Also, you CAN save the result with the same name, but I think it would be local 
 </div>
 </div>
 
-<div id="outline-container-sec-24" class="outline-1  slide">
-<h1 id="sec-24">Why and how decorators function</h1>
-<div class="outline-text-2" id="text-24">
+<div id="outline-container-sec-23" class="outline-1  slide">
+<h1 id="sec-23">Why and how decorators function</h1>
+<div class="outline-text-2" id="text-23">
 <p>
-...Well, I would get into it if I had more time
-</p>
-
-<p>
-But I will say this: If you thought <b><a href="http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python" target="_blank">closures</a></b> were pointless and academic, think again!
+If you thought <b><a href="http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python">closures</a></b> were pointless and academic, think again!
 </p>
 <ul class='org-ul'>
 <li>Not that the accepted answer for that question will help any, but the other answers are each a little bit helpful
@@ -751,7 +729,7 @@ But I will say this: If you thought <b><a href="http://stackoverflow.com/questio
 
 <p>
 If you want to know more, check out Matt Harrison's
- <a href="http://www.amazon.com/Guide-Learning-Python-Decorators-ebook/dp/B006ZHJSIM/" target="_blank">Guide To Python Decorators, a $5 ebook</a> (or ask me!)
+ <a href="http://www.amazon.com/Guide-Learning-Python-Decorators-ebook/dp/B006ZHJSIM/">Guide To Python Decorators, a $5 ebook</a> (or ask me!)
 </p>
 
 <p>
@@ -759,94 +737,99 @@ That's not an affiliate link, it's just a really good, concise explanation of al
 </p>
 
 <p>
-Also, personal anecdote: Closures can turn ugly, awful code (like loops with multiple exit points that require cleanup) into really nice code. <a href="http://xkcd.com/325/" target="_blank">A++ would use again</a>.
+Closures can turn ugly, awful code (like loops with multiple exit points that require cleanup) into really nice code. A++ would use again.
 </p>
+</div>
+</div>
+
+<div id="outline-container-sec-24" class="outline-1  slide">
+<h1 id="sec-24">Useful decorators</h1>
+<div class="outline-text-1" id="text-24">
+</div><div id="outline-container-sec-24-1" class="outline-2">
+<h2 id="sec-24-1">Top three</h2>
+<div class="outline-text-3" id="text-24-1">
+<ul class='org-ul'>
+<li><a href="http://code.activestate.com/recipes/577819-deprecated-decorator/">Deprecation that auto-calls the new function</a>
+</li>
+<li><a href="http://code.activestate.com/recipes/496691-new-tail-recursion-decorator/#c3">Turning recursive functions into loops</a> (neat, but rarely useful)
+</li>
+<li><a href="http://micheles.googlecode.com/hg/decorator/documentation.html#the-solution">Automatic caching</a> (or for Python 3.2+, <a href="http://docs.python.org/3.4/library/functools.html#functools.lru_cache">functools.lru_cach</a>)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-24-2" class="outline-2 slide">
+<h2 id="sec-24-2">The rest (in no particular order)</h2>
+<div class="outline-text-3" id="text-24-2">
+<ul class='org-ul'>
+<li><a href="http://www.ibm.com/developerworks/library/l-cpdecor/index.html#N1017A">"Element-wise" functions</a>
+</li>
+<li><a href="http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484">Counting function calls, benchmarking</a> (at the bottom)
+</li>
+<li><a href="http://code.activestate.com/recipes/577666-abstract-method-decorator/">Abstract method decorator</a>
+</li>
+<li><a href="http://code.activestate.com/recipes/576944-the-goto-decorator/">Goto decorator</a>
+</li>
+<li><a href="http://code.activestate.com/recipes/578528-type-checking-using-python-3x-annotations/">Python 3 type checking with annotations</a>
+</li>
+<li><a href="http://code.activestate.com/recipes/578233-immutable-class-decorator/">Immutable classes</a> (can't be inherited from though)
+</li>
+<div class="slide">
+<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Smart_deprecation_warnings_.28with_valid_filenames.2C_line_numbers.2C_etc..29">Deprecation which specifies the file and line of deprecated function</a>
+</li>
+<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Easy_Dump_of_Function_Arguments">Print the arguments of a function before calling it</a>
+</li>
+<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Synchronization">Synchronization for multi-threaded programs</a>
+</li>
+<li><a href="http://www.phyast.pitt.edu/~micheles/python/documentation.html#redirecting-stdout">Redirecting a function's stdout</a>
+</li>
+<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions">Pre and post conditions</a>
+</li>
+<li><a href="https://mg.pov.lt/profilehooks/">Profiling and coverage analysis</a>
+</li>
+<li><a href="http://www.linux-mag.com/id/5377/">Timeout for long functions</a> (POSIX systems only, sorry fellow Windows users :( )
+</li>
+<li>Variations of init methods that don't require any "self.x = x" junk: <a href="http://stackoverflow.com/questions/3884612/automatically-setting-class-member-variables-in-python/3884624#3884624">v1</a>, <a href="http://stackoverflow.com/a/1389216/1137749">v2</a>, <a href="http://code.activestate.com/recipes/286185-automatically-initializing-instance-variables-from/">v3</a>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 
 <div id="outline-container-sec-25" class="outline-1  slide">
-<h1 id="sec-25">Useful decorators</h1>
-<div class="outline-text-1" id="text-25">
-</div><div id="outline-container-sec-25-1" class="outline-2">
-<h2 id="sec-25-1">Top three</h2>
-<div class="outline-text-3" id="text-25-1">
-<ul class='org-ul'>
-<li><a href="http://code.activestate.com/recipes/577819-deprecated-decorator/" target="_blank">Deprecation that auto-calls the new function</a>
-</li>
-<li><a href="http://code.activestate.com/recipes/496691-new-tail-recursion-decorator/#c3" target="_blank">Turning recursive functions into loops</a> (neat, but only useful if the function is called 2000+ times)
-</li>
-<li><a href="http://micheles.googlecode.com/hg/decorator/documentation.html#the-solution" target="_blank">Automatic caching</a> (or for Python 3.2+, <a href="http://docs.python.org/3.4/library/functools.html#functools.lru_cache" target="_blank">functools.lru_cach</a>)
-</li>
-</ul>
-</div>
-</div>
+<h1 id="sec-25">Tools for writing decorators</h1>
+<div class="outline-text-2" id="text-25">
+<p>
+<i>Decorator module</i>, as previously mentioned
+</p>
 
-<div id="outline-container-sec-25-2" class="outline-2 slide">
-<h2 id="sec-25-2">The rest (in no particular order)</h2>
-<div class="outline-text-3" id="text-25-2">
-<ul class='org-ul'>
-<li><a href="http://www.ibm.com/developerworks/library/l-cpdecor/index.html#N1017A" target="_blank">"Element-wise" functions</a>
-</li>
-<li><a href="http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484" target="_blank">Counting function calls, benchmarking</a> (at the bottom)
-</li>
-<li><a href="http://code.activestate.com/recipes/577666-abstract-method-decorator/" target="_blank">Abstract method decorator</a>
-</li>
-<li><a href="http://code.activestate.com/recipes/576944-the-goto-decorator/" target="_blank">Goto decorator</a>
-</li>
-<li><a href="http://code.activestate.com/recipes/578528-type-checking-using-python-3x-annotations/" target="_blank">Python 3 type checking with annotations</a>
-</li>
-<li><a href="http://code.activestate.com/recipes/578233-immutable-class-decorator/" target="_blank">Immutable classes</a> (can't be inherited from though)
-</li>
-<div class="slide">
-<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Smart_deprecation_warnings_.28with_valid_filenames.2C_line_numbers.2C_etc..29" target="_blank">Deprecation which specifies the file and line of deprecated function</a>
-</li>
-<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Easy_Dump_of_Function_Arguments" target="_blank">Print the arguments of a function before calling it</a>
-</li>
-<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Synchronization" target="_blank">Synchronization for multi-threaded programs</a>
-</li>
-<li><a href="http://www.phyast.pitt.edu/~micheles/python/documentation.html#redirecting-stdout" target="_blank">Redirecting a function's stdout</a>
-</li>
-<li><a href="http://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions" target="_blank">Pre and post conditions</a>
-</li>
-<li><a href="https://mg.pov.lt/profilehooks/" target="_blank">Profiling and coverage analysis</a>
-</li>
-<li><a href="http://www.linux-mag.com/id/5377/" target="_blank">Timeout for long functions</a> (POSIX systems only, sorry fellow Windows users :( )
-</li>
-<li>Variations of init methods that don't require any "self.x = x" junk: <a href="http://stackoverflow.com/questions/3884612/automatically-setting-class-member-variables-in-python/3884624#3884624" target="_blank">v1</a>, <a href="http://stackoverflow.com/a/1389216/1137749" target="_blank">v2</a>, <a href="http://code.activestate.com/recipes/286185-automatically-initializing-instance-variables-from/" target="_blank">v3</a>
-</li>
-</ul>
-</div>
-</div>
+<p>
+The built-in <a href="http://docs.python.org/2/library/functools.html#functools.wraps">functools.wraps</a>
+</p>
+
+<p>
+<a href="http://docs.pylonsproject.org/projects/venusian/en/latest/#using-venusian">Venusian offers delayed decorator application</a>, with the main goal 
+of improving testability
+</p>
+
+<p>
+A <a href="http://lanyrd.com/2013/kiwipycon/scpkbk/">recent talk at PyCon New Zealand</a> introduced me to a modern take on the decorator module: <a href="http://wrapt.readthedocs.org/en/latest/">called wrapt</a>, it aims to make utterly flawless decorators that work on everything. In pure Python, it's about twice as slow as the original module; with the C extension, it's actually a little bit faster. It does make your decorator's definition look a bit boilerplate-y, since all the arguments go to one function, but the functionality seems solid.
+</p>
+
+<p>
+There's also a package <a href="http://hackflow.com/blog/2013/11/03/painless-decorators/">called funcy</a> which looks interesting, aesthetically at least. Maybe don't use it in production, but I like that you can make decorator factories without any nesting.
+</p>
 </div>
 </div>
 
 <div id="outline-container-sec-26" class="outline-1  slide">
-<h1 id="sec-26">Tools for writing decorators</h1>
+<h1 id="sec-26">Things I explicitly avoided here</h1>
 <div class="outline-text-2" id="text-26">
-<p>
-<a href="https://pypi.python.org/pypi/decorator" target="_blank">Decorator module</a>, as previously mentioned
-</p>
-
-<p>
-The built-in <a href="http://docs.python.org/2/library/functools.html#functools.wraps" target="_blank">functools.wraps</a>
-</p>
-
-<p>
-<a href="http://docs.pylonsproject.org/projects/venusian/en/latest/#using-venusian" target="_blank">Venusian offers delayed decorator application</a>, with the main goal 
-of improving testability
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-27" class="outline-1  slide">
-<h1 id="sec-27">Things I intentionally avoided here</h1>
-<div class="outline-text-2" id="text-27">
 <p>
 Using classes for decorators, class decorators (they are different), some of the finer points of decorating methods (functions defined in a class)
 </p>
-
-<p>
-See <a href="http://python-3-patterns-idioms-test.readthedocs.org/en/latest/PythonDecorators.html" target="_blank">Bruce Eckel's Python 3 book</a> for more detail on class related stuff, and some other links in my <a href="https://github.com/MatthewDarling/PythonDecorators/blob/master/Prep.org" target="_blank">disorganized prep file</a>
 </div>
 </div>
 
