@@ -1,3 +1,5 @@
+![decorators make people think they're smart, but nobody uses them regularly](https://cdn.rawgit.com/Dobiasd/articles/3370dffd/programming_language_learning_curves/python.png)
+
 Python Decorators
 =================
 
